@@ -20,7 +20,6 @@ let hash = md5(TimeVal+process.env.REACT_APP_PRI_API_KEY+process.env.REACT_APP_P
 const srh = `https://gateway.marvel.com/v1/public/characters?ts=${TimeVal}&apikey=${process.env.REACT_APP_PUB_API_KEY}&hash=${hash}`
 
 
-
 function App() {
 
   let [searchRes , setSearchRes] = useState([])
