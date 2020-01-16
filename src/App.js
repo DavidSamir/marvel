@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import md5 from 'md5';
 import axios from 'axios';
 import {
   BrowserRouter ,
@@ -6,30 +7,39 @@ import {
   Route,
   Link
 } from "react-router-dom";
-
 import './App.css';
+
+// this is to call the environment vars
 require('dotenv').config()
-// this is the URL for the 1st TEst :D 
-// https://gateway.marvel.com:443/v1/public/characters?apikey=aee1cc960ea813e46f5af91d0e2c09b3
-const srh = `https://gateway.marvel.com:443/v1/public/characters?apikey=${process.env.REACT_APP_PUB_API_KEY}`
+
+// salting 
+let TimeVal = new Date().getDate();
+// hashing
+let hash = md5(TimeVal+process.env.REACT_APP_PRI_API_KEY+process.env.REACT_APP_PUB_API_KEY)
+// creating the url 
+const srh = `https://gateway.marvel.com/v1/public/characters?ts=${TimeVal}&apikey=${process.env.REACT_APP_PUB_API_KEY}&hash=${hash}`
 
 
 
 function App() {
 
+  let [searchRes , setSearchRes] = useState([])
 
 
+
+// calling the request 
   useEffect( () => {
-    axios.get(srh).then(crh => {
-      console.log(crh)
-
-
+    axios.get(srh).then(characters => {
+      setSearchRes(characters.data.data.results);
+    
     });
     } , [])
 
-
-  return (
-    <div className="App">
+    
+    
+    
+    return (
+      <div className="App">
       <header className="App-header">
       <BrowserRouter>
       <div>
@@ -56,8 +66,22 @@ function App() {
           </Route>
           <Route path="/">
             Home
-               s
-              
+              {console.log(searchRes)}
+          
+          
+              {searchRes.map(val =>  
+              <div>
+                <p> name : {val.name} </p>
+                <p> id ; {val.id}</p>
+                <p> Description: {val.description} </p>
+                <p> resourceURI: {val.resourceURI} </p>
+                <p> modified : {val.modified} </p>
+              </div>
+          
+              )}
+          
+          
+          
           </Route>
         </Switch>
       </div>
