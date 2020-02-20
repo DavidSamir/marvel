@@ -80,6 +80,7 @@ function App() {
               <div>
                 <p> name : {val.name} </p>
                 <p> id ; {val.id}</p>
+                {/* <p> resourceURI: {val.resourceURI} </p> */}
                 {/* <p> modified : {val.modified} </p> */}
               </div>
           
