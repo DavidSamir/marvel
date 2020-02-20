@@ -36,7 +36,7 @@ function App() {
     axios.get(allcharacters).then(characters => {
       setCarRes(characters.data.data.results);
     });
-    } , [])
+    } )
 
   // calling the request 
   useEffect( () => {
