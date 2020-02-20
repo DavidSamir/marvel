@@ -84,7 +84,6 @@ function App() {
                 {/* <p> resourceURI: {val.resourceURI} </p> */}
                 {/* <p> modified : {val.modified} </p> */}
               </div>
-          
           )}
           </Route>
           <Route path="/">
