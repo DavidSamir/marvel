@@ -102,7 +102,7 @@ function App() {
                       {val.urls.map(
                         ur => 
                           <p> 
-                            <a href={ur.url} target="_blank"> {ur.type} </a> 
+                            <a href={ur.url} target="_blank" rel="noopener noreferrer"> {ur.type} </a> 
                           </p>
                       )}
                     </div>
