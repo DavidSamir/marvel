@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import md5 from 'md5';
 import axios from 'axios';
-import {
-  BrowserRouter ,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import './App.css';
+import Navbar from './lib/header/Navbar';
+import { BrowserRouter , Switch, Route } from "react-router-dom";
+import './App.scss';
 
 // this is to call the environment vars
 require('dotenv').config()
@@ -57,20 +53,7 @@ function App() {
       <header className="App-header">
       <BrowserRouter>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">Users</Link>
-            </li>
-            <li>
-              <Link to="/users">all characters</Link>
-            </li>
-          </ul>
-        </nav>
-
+        <Navbar/>
         <Switch>
           <Route path="/about">
             About 
@@ -87,11 +70,11 @@ function App() {
           )}
           </Route>
           <Route path="/">
-          Search 
-          <input type="search" name="search" onChange={srchVal} />
-
-
-          <div> , 
+          <div class="search-container">
+            <input type="search" name="search" onChange={srchVal} />
+            <div class="search"></div>
+          </div>
+          <div> 
                 {searchRes.map(
 
                   val => <div key={val.id}> {} res 
