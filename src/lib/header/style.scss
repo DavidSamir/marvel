@@ -11,17 +11,6 @@ nav {
         padding: 0 20px;
         li {
             display: flex;
-            a {
-                color: #fff;
-                padding: 0 5px;
-                font-size: 15px;
-                transition: .2s;
-                text-decoration: none;
-                text-transform: uppercase;
-                &:hover {
-                    color: #ec1d24;
-                }
-            }
         }
     }
 }

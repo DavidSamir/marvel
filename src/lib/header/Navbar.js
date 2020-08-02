@@ -13,13 +13,13 @@ const Navbar = ()=> {
                 </a>
             <ul>
                 <li>
-                <Link to="/">Home</Link>
+                    <Link to="/">Home</Link>
                 </li>
                 <li>
-                <Link to="/about">Users</Link>
+                    <Link to="/about">Users</Link>
                 </li>
                 <li>
-                <Link to="/users">all characters</Link>
+                    <Link to="/users">all characters</Link>
                 </li>
             </ul>
             </nav>
