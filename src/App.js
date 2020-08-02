@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import md5 from 'md5';
 import axios from 'axios';
 import Navbar from './lib/header/Navbar';
+import Footer from './lib/footer/Footer';
+import Card from './lib/search-res/Card';
 import { BrowserRouter , Switch, Route } from "react-router-dom";
 import './App.scss';
 
@@ -41,7 +43,6 @@ function App() {
       console.log(chrRes)
     });
     } , [hulk])
-
     
     const srchVal = (a) => {
        console.log(a.target.value)  
@@ -50,10 +51,11 @@ function App() {
     
     return (
       <div className="App">
-      <header className="App-header">
+
       <BrowserRouter>
-      <div>
-        <Navbar/>
+        <header className="App-header">
+          <Navbar/>
+        </header>
         <Switch>
           <Route path="/about">
             About 
@@ -61,8 +63,8 @@ function App() {
           <Route path="/users">
               {carRes.map(val =>  
               <div>
-                <p> name : {val.name} </p>
-                <p> id ; {val.id}</p>
+                <p>{val.name} </p>
+                {/* <p> id ; {val.id}</p> */}
                 {/* <p> Description: {val.description} </p> */}
                 {/* <p> resourceURI: {val.resourceURI} </p> */}
                 {/* <p> modified : {val.modified} </p> */}
@@ -70,35 +72,30 @@ function App() {
           )}
           </Route>
           <Route path="/">
-          <div class="search-container">
-            <input type="search" name="search" onChange={srchVal} />
-            <div class="search"></div>
-          </div>
-          <div> 
-                {searchRes.map(
-
-                  val => <div key={val.id}> {} res 
-                <p> Name : {val.name}</p> 
-                <p> Description: {val.description.substring(1, 110) + "..."} </p>
-                <p> modified : {val.modified} </p>
-                    <div> 
-                      {val.urls.map(
-                        ur => 
-                          <p> 
-                            <a href={ur.url} target="_blank" rel="noopener noreferrer"> {ur.type} </a> 
-                          </p>
-                      )}
-                    </div>
-                  </div>
-                  )
-                }
-
-          </div>
+            <div className="search-body container">
+              <div class="search-container">
+                <input type="search" name="search" onChange={srchVal} />
+                <div class="search"></div>
+              </div>
+              <div className="search--resualts"> 
+                    {searchRes.map(
+                      val => <div key={val.id} className="card--res" >  
+                        <Card 
+                        name={val.name} 
+                        urls={val.urls} 
+                        thumbnail={val.thumbnail.path} 
+                        thumbnailExt={val.thumbnail.extension} 
+                        description={val.description.substring(1, 100) + "..."} 
+                        modified={val.modified} />
+                      </div>
+                      )
+                    }
+              </div>
+            </div>
           </Route>
         </Switch>
-      </div>
-    </BrowserRouter>
-      </header>
+      </BrowserRouter>
+      <Footer/>
     </div>
   );
 }

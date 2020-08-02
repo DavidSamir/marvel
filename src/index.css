@@ -13,3 +13,16 @@ code {
     max-width: 1400px;
     margin: 0 auto;
 }
+
+a {
+    color: #fff;
+    padding: 0 5px;
+    font-size: 15px;
+    transition: .2s;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a:hover {
+    color: #ec1d24;
+}
